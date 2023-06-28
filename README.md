@@ -19,7 +19,7 @@ This repository contains the source code and development progress for the recrea
 ## Future Enhancements
 ### The following features and improvements can be considered for future development:
 
-Optimizing performance and memory usage.
+- Optimizing performance and memory usage.
 
 Feel free to contribute to the project by submitting pull requests or opening issues for any bugs or suggestions.
 
