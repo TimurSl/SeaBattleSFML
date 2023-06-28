@@ -21,4 +21,11 @@
       <ProjectReference Include="..\ZenisoftGameEngine\ZenisoftGameEngine.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Fonts\Pusia.otf" />
+      <EmbeddedResource Include="Fonts\Pusia.otf">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+    </ItemGroup>
+
 </Project>

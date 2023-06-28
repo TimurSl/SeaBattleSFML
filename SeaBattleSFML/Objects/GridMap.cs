@@ -1,4 +1,6 @@
 ﻿using SeaBattle.Cells;
+using SeaBattle.Core;
+using SeaBattle.Core.Types;
 using SeaBattle.MapCreators;
 using SeaBattle.MapCreators.Types;
 using SeaBattle.Settings;
@@ -15,7 +17,7 @@ public class GridMap : BaseObject, IDrawable
 	public int ZIndex { get; set; }
 	
 	private RectangleShape[,] Grid { get; set; } = new RectangleShape[Configuration.size, Configuration.size];
-	private Map map;
+	public Map map;
 	
 	private float cellSize = 50f;
 	
@@ -37,6 +39,7 @@ public class GridMap : BaseObject, IDrawable
 	}
 	public void Draw(RenderTarget target)
 	{
+		UpdateGrid ();
 		for (int x = 0; x < Configuration.size; x++)
 		{
 			for (int y = 0; y < Configuration.size; y++)
@@ -53,24 +56,7 @@ public class GridMap : BaseObject, IDrawable
 		{
 			for (int y = 0; y < grid.GetLength(1); y++)
 			{
-				switch (grid[x,y].CellType)
-				{
-					case Configuration.CellType.Nothing:
-						Grid[x, y].FillColor = Color.Blue;
-						break;
-					case Configuration.CellType.Ship:
-						Grid[x, y].FillColor = Color.Green;
-						break;
-					case Configuration.CellType.Miss:
-						Grid[x, y].FillColor = Color.Red;
-						break;
-					case Configuration.CellType.Hit:
-						Grid[x, y].FillColor = Color.Yellow;
-						break;
-					default:
-						Grid[x, y].FillColor = Color.White;
-						break;
-				}
+				Grid[x, y].FillColor = UIConfiguration.CellColors[grid[x, y].CellType];
 				
 				Grid[x, y].Position = new Vector2f(x * cellSize + offset.X, y * cellSize + offset.Y);
 				Grid[x, y].Size = new Vector2f(cellSize, cellSize);
@@ -80,12 +66,54 @@ public class GridMap : BaseObject, IDrawable
 
 				if (new IntegerVector2(x,y) == map.cursorPosition && map.showCursor)
 				{
-					Grid[x, y].FillColor += new Color(100,100,100,0);
+					Grid[x, y].FillColor = UIConfiguration.CursorColor;
 				}
 				
 				if (new IntegerVector2(x, y) == map.lastHit && map.useLastHit)
 				{
-					Grid[x, y].FillColor = new Color(20,100,0,255);
+					Grid[x, y].FillColor = UIConfiguration.LastHitColor;
+				}
+			}
+		}
+	}
+	
+	public void MoveCursor(IntegerVector2 direction)
+	{
+		if (map.cursorPosition.X + direction.X < 0 || map.cursorPosition.X + direction.X >= Configuration.size || 
+		    map.cursorPosition.Y + direction.Y < 0 || map.cursorPosition.Y + direction.Y >= Configuration.size)
+		{
+			return;
+		}
+		map.cursorPosition += direction;
+	}
+	
+	public bool HasShips()
+	{
+		return map.HasShips();
+	}
+	public void OutlineShip(Ship ship)
+	{
+		// get all cells around the ship
+		Cell[] cells = ship.ShipCells;
+
+		foreach (Cell cell in cells)
+		{
+			OutlineCell(cell);
+		}
+	}
+	
+	private void OutlineCell(Cell cell)
+	{
+		for (int x = cell.Position.X - 1; x <= cell.Position.X + 1; x++)
+		{
+			for (int y = cell.Position.Y - 1; y <= cell.Position.Y + 1; y++)
+			{
+				if (x >= 0 && x < Grid.GetLength(0) && y >= 0 && y < Grid.GetLength(1))
+				{
+					if (map.Grid[x, y].CellType == Configuration.CellType.Nothing)
+					{
+						map.Grid[x, y].CellType = Configuration.CellType.Miss;
+					}
 				}
 			}
 		}

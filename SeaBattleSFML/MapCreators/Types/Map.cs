@@ -64,4 +64,6 @@ public class Map
 		// regenerate the map
 		CreateGrid(levelType);
 	}
+	
+	
 }

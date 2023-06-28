@@ -61,9 +61,12 @@ public class Engine
 		{
 			if (drawable is BaseObject baseObject && !baseObject.IsInitialized)
 			{
-				Console.WriteLine($"Object {baseObject} is not initialized yet!");
+				if (EngineConfiguration.DebugMode)
+					Console.WriteLine($"Object {baseObject} is not initialized yet!");
+			
 				continue;
 			}
+			
 			drawable.Draw(Window);
 		}
 	}
@@ -79,7 +82,9 @@ public class Engine
 		{
 			if (updatable is BaseObject baseObject && !baseObject.IsInitialized)
 			{
-				Console.WriteLine($"Object {baseObject} is not initialized yet!");
+				if (EngineConfiguration.DebugMode)
+					Console.WriteLine($"Object {baseObject} is not initialized yet!");
+				
 				continue;
 			}
 			updatable.Update();
@@ -104,7 +109,7 @@ public class Engine
 		}
 		
 		actor.IsInitialized = true;
-		
+
 		return actor;
 	}
 

@@ -60,9 +60,9 @@ public abstract class BaseGame
 		Engine.drawables.Add(drawable);
 	}
 	
-	public void RegisterActor(BaseObject actor)
+	public BaseObject RegisterActor(BaseObject actor)
 	{
-		Engine.RegisterActor(actor);
+		return Engine.RegisterActor(actor);
 	}
 
 	public RenderTarget GetDrawTarget()

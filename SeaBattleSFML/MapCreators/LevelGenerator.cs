@@ -1,4 +1,5 @@
 ﻿using SeaBattle.Cells;
+using SeaBattle.Core;
 using SeaBattle.MapCreators.Extensions;
 using SeaBattle.Types;
 using static SeaBattle.Settings.Configuration;
@@ -11,7 +12,7 @@ public class LevelGenerator
 
 	public static Cell[,] GenerateLevel()
 	{
-		random = new Random ();
+		random = Game.Random;
 		var level = MakeEmptyMap ();
 
 		PlaceShips(ref level);

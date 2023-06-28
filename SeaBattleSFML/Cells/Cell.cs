@@ -52,12 +52,12 @@ public class Cell
 		Cell cell = map.Grid[coords.X, coords.Y];
 		if (cell.CellType == CellType.Ship)
 		{
-			Console.WriteLine("Hit!");
+			// Console.WriteLine("Hit!");
 			CellType = CellType.Hit;
 		}
 		else
 		{
-			Console.WriteLine("Miss!");
+			// Console.WriteLine("Miss!");
 			CellType = CellType.Miss;
 		}
 	}
