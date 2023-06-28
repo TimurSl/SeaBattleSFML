@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace SeaBattle.Account.Providers;
+namespace SeaBattleSFML.Account.Types;
 
 public class JsonStats
 {

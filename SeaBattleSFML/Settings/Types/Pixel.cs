@@ -1,4 +1,4 @@
-namespace SeaBattle.Settings;
+namespace SeaBattleSFML.Settings.Types;
 
 public struct Pixel
 {

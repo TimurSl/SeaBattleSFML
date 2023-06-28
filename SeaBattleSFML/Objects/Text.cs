@@ -1,9 +1,8 @@
-
-using SeaBattle.Core.Types;
+using SeaBattleSFML.Core.Types;
 using SFML.System;
 using ZenisoftGameEngine.Interfaces;
 
-namespace agar.io.Game.Objects;
+namespace SeaBattleSFML.Objects;
 
 public class Text : IDrawable
 {

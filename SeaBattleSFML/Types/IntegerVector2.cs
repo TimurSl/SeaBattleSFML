@@ -1,4 +1,4 @@
-﻿namespace SeaBattle.Types;
+﻿namespace SeaBattleSFML.Types;
 
 public struct IntegerVector2
 {

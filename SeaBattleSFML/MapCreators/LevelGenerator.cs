@@ -1,10 +1,10 @@
-﻿using SeaBattle.Cells;
-using SeaBattle.Core;
-using SeaBattle.MapCreators.Extensions;
-using SeaBattle.Types;
-using static SeaBattle.Settings.Configuration;
+﻿using SeaBattleSFML.Cells;
+using SeaBattleSFML.Core;
+using SeaBattleSFML.MapCreators.Extensions;
+using SeaBattleSFML.Types;
+using static SeaBattleSFML.Settings.Configuration;
 
-namespace SeaBattle.MapCreators;
+namespace SeaBattleSFML.MapCreators;
 
 public class LevelGenerator
 {

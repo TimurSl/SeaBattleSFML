@@ -1,7 +1,7 @@
-using SeaBattle.Settings;
-using SeaBattle.Types;
+using SeaBattleSFML.Settings;
+using SeaBattleSFML.Types;
 
-namespace SeaBattle.Cells;
+namespace SeaBattleSFML.Cells;
 
 public class Ship : Cell
 {

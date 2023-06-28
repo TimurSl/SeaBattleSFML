@@ -1,4 +1,6 @@
-﻿namespace SeaBattle.Account.Providers;
+﻿using SeaBattleSFML.Account.Interfaces;
+
+namespace SeaBattleSFML.Account.Types;
 
 public struct Account
 {

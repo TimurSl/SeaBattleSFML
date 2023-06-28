@@ -1,15 +1,12 @@
-using System.Timers;
-using agar.io.Game.Objects;
-using SeaBattle.Core.Types;
-using SeaBattle.Settings;
+using SeaBattleSFML.Core.Types;
 using SeaBattleSFML.Input;
 using SeaBattleSFML.Objects;
+using SeaBattleSFML.Settings;
 using SFML.System;
 using ZenisoftGameEngine.Types;
-using System.Timers;
 using Timer = System.Timers.Timer;
 
-namespace SeaBattle.Core;
+namespace SeaBattleSFML.Core;
 
 public class Game : BaseGame
 {

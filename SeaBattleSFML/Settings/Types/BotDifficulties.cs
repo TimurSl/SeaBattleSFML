@@ -1,6 +1,4 @@
-using SeaBattle.Types;
-
-namespace SeaBattle.Settings;
+namespace SeaBattleSFML.Settings.Types;
 
 public enum BotDifficulties
 {

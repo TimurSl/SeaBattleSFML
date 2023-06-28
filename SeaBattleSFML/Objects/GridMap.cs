@@ -1,8 +1,8 @@
-﻿using SeaBattle.Cells;
-using SeaBattle.Core.Types;
-using SeaBattle.MapCreators.Types;
-using SeaBattle.Settings;
-using SeaBattle.Types;
+﻿using SeaBattleSFML.Cells;
+using SeaBattleSFML.Core.Types;
+using SeaBattleSFML.MapCreators.Types;
+using SeaBattleSFML.Settings;
+using SeaBattleSFML.Types;
 using SFML.Graphics;
 using SFML.System;
 using ZenisoftGameEngine.Interfaces;

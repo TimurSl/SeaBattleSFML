@@ -1,6 +1,6 @@
 ﻿using SeaBattleSFML.Objects;
 
-namespace SeaBattle.Core.Types;
+namespace SeaBattleSFML.Core.Types;
 
 public struct GameLaunchParams
 {

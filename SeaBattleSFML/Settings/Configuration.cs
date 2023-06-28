@@ -1,6 +1,7 @@
-using SeaBattle.Types;
+using SeaBattleSFML.Settings.Types;
+using SeaBattleSFML.Types;
 
-namespace SeaBattle.Settings;
+namespace SeaBattleSFML.Settings;
 
 public class Configuration
 {

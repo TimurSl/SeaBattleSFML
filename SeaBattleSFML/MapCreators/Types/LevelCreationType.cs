@@ -1,4 +1,4 @@
-namespace SeaBattle.MapCreators.Types;
+namespace SeaBattleSFML.MapCreators.Types;
 
 public enum LevelCreationType
 {

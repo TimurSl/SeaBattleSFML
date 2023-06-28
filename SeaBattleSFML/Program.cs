@@ -1,5 +1,5 @@
-﻿using SeaBattle.Core;
-using SeaBattle.Core.Types;
+﻿using SeaBattleSFML.Core;
+using SeaBattleSFML.Core.Types;
 using SeaBattleSFML.Input;
 using SeaBattleSFML.Objects;
 

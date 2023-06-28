@@ -1,7 +1,7 @@
-﻿using SeaBattle.Settings;
+﻿using SeaBattleSFML.Settings;
 using SFML.Graphics;
 
-namespace SeaBattle.Core.Types;
+namespace SeaBattleSFML.Core.Types;
 
 public static class UIConfiguration
 {

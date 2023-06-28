@@ -1,7 +1,7 @@
-using SeaBattle.Settings;
 using SeaBattleSFML.Objects;
+using SeaBattleSFML.Settings;
 
-namespace SeaBattle.Core;
+namespace SeaBattleSFML.Core;
 
 public class RoundManager
 {

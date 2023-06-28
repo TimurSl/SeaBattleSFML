@@ -1,6 +1,6 @@
-using SeaBattle.Settings;
+using SeaBattleSFML.Settings;
 
-namespace SeaBattle.Types;
+namespace SeaBattleSFML.Types;
 
 public static class IntegerVector2Extensions
 {

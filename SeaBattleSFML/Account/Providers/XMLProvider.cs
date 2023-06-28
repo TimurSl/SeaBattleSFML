@@ -1,12 +1,13 @@
 using System.Xml.Serialization;
-using Newtonsoft.Json;
+using SeaBattleSFML.Account.Interfaces;
+using SeaBattleSFML.Account.Types;
 
-namespace SeaBattle.Account.Providers;
+namespace SeaBattleSFML.Account.Providers;
 
 public class XMLProvider : IAccountProvider
 {
 	string path_to_profiles = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "SeaBattle", "Profiles");
-	public Account GetAccount(string login, string password)
+	public Types.Account GetAccount(string login, string password)
 	{
 		if (!Directory.Exists(path_to_profiles))
 		{
@@ -19,22 +20,22 @@ public class XMLProvider : IAccountProvider
 
 		if (!File.Exists(path) || new FileInfo(path).Length == 0)
 		{
-			Account account = CreateAccountWithStats(login, password, new JsonStats() { Wins = "0", Mmr = "0" });
+			Types.Account account = CreateAccountWithStats(login, password, new JsonStats() { Wins = "0", Mmr = "0" });
 			return account;
 		}
 		else
 		{
-			XmlSerializer serializer = new XmlSerializer(typeof(Account));
+			XmlSerializer serializer = new XmlSerializer(typeof(Types.Account));
 			using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
 			{
-				Account accountData = (Account) serializer.Deserialize(fs);
-				return new Account(accountData.Login, password, accountData.Stats, this);
+				Types.Account accountData = (Types.Account) serializer.Deserialize(fs);
+				return new Types.Account(accountData.Login, password, accountData.Stats, this);
 			}
 		}
 	}
 	
 
-	public Account ModifyStats(string login, string password, JsonStats newJsonStats)
+	public Types.Account ModifyStats(string login, string password, JsonStats newJsonStats)
 	{
 		var path = Path.Combine(path_to_profiles, $"{login}.xml");
 
@@ -48,10 +49,10 @@ public class XMLProvider : IAccountProvider
 			return CreateAccountWithStats (login, password, newJsonStats);
 		}
 
-		XmlSerializer serializer = new XmlSerializer(typeof(Account));
+		XmlSerializer serializer = new XmlSerializer(typeof(Types.Account));
 		using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
 		{
-			Account accountData = (Account) serializer.Deserialize(fs);
+			Types.Account accountData = (Types.Account) serializer.Deserialize(fs);
 			Stats stats = new Stats ();
 				
 			stats.Wins = int.Parse(newJsonStats.Wins);
@@ -61,18 +62,18 @@ public class XMLProvider : IAccountProvider
 			fs.SetLength(0);
 			serializer.Serialize(fs, accountData);
 				
-			return new Account(accountData.Login, password, stats, this);
+			return new Types.Account(accountData.Login, password, stats, this);
 		}
 
 	}
 
-	private Account CreateAccountWithStats(string login, string password, JsonStats newJsonStats)
+	private Types.Account CreateAccountWithStats(string login, string password, JsonStats newJsonStats)
 	{
 		string path = Path.Combine(path_to_profiles, $"{login}.xml");
-		XmlSerializer xmlSerializer = new XmlSerializer(typeof(Account));
+		XmlSerializer xmlSerializer = new XmlSerializer(typeof(Types.Account));
 		using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
 		{
-			Account accountData = new Account ();
+			Types.Account accountData = new Types.Account ();
 			accountData.Login = login;
 			// accountData.Password = password;
 			// serialize stats to XML, not JSON
@@ -82,7 +83,7 @@ public class XMLProvider : IAccountProvider
 			// accountData.Stats = JsonConvert.SerializeObject(stats);
 			xmlSerializer.Serialize(fs, accountData);
 
-			return new Account(login, password, stats, this);
+			return new Types.Account(login, password, stats, this);
 		}
 	}
 }

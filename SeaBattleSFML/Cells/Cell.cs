@@ -1,9 +1,9 @@
-﻿using SeaBattle.MapCreators.Types;
-using SeaBattle.Settings;
-using SeaBattle.Types;
-using static SeaBattle.Settings.Configuration;
+﻿using SeaBattleSFML.MapCreators.Types;
+using SeaBattleSFML.Settings;
+using SeaBattleSFML.Types;
+using static SeaBattleSFML.Settings.Configuration;
 
-namespace SeaBattle.Cells;
+namespace SeaBattleSFML.Cells;
 
 public class Cell
 {

@@ -1,7 +1,7 @@
-﻿using SeaBattle.Core;
-using SeaBattle.Settings;
-using SeaBattle.Types;
+﻿using SeaBattleSFML.Core;
 using SeaBattleSFML.Objects;
+using SeaBattleSFML.Settings;
+using SeaBattleSFML.Types;
 using Timer = System.Timers.Timer;
 
 namespace SeaBattleSFML.Input;

@@ -1,4 +1,4 @@
-namespace SeaBattle.Account.Providers;
+namespace SeaBattleSFML.Account.Types;
 
 [Serializable]
 public struct Stats

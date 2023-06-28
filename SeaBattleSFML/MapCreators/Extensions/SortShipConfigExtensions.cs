@@ -1,6 +1,7 @@
-using SeaBattle.Settings;
+using SeaBattleSFML.Settings;
+using SeaBattleSFML.Settings.Types;
 
-namespace SeaBattle.MapCreators.Extensions;
+namespace SeaBattleSFML.MapCreators.Extensions;
 
 public static class SortShipConfigExtensions
 {

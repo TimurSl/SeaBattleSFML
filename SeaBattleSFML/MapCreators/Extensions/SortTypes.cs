@@ -1,4 +1,4 @@
-namespace SeaBattle.MapCreators.Extensions;
+namespace SeaBattleSFML.MapCreators.Extensions;
 
 public enum SortTypes
 {

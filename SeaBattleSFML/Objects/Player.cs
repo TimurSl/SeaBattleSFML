@@ -1,15 +1,14 @@
-﻿using SeaBattle.Account.Providers;
-using SeaBattle.Cells;
-using SeaBattle.Core;
-using SeaBattle.MapCreators.Types;
-using SeaBattle.Settings;
-using SeaBattle.Types;
+﻿using SeaBattleSFML.Account.Providers;
+using SeaBattleSFML.Cells;
+using SeaBattleSFML.Core;
 using SeaBattleSFML.Input;
+using SeaBattleSFML.MapCreators.Types;
+using SeaBattleSFML.Types;
 using SFML.Graphics;
 using SFML.System;
 using ZenisoftGameEngine.Interfaces;
 using ZenisoftGameEngine.Types;
-using Text = agar.io.Game.Objects.Text;
+using Text = SeaBattleSFML.Objects.Text;
 using Timer = System.Timers.Timer;
 
 namespace SeaBattleSFML.Objects;
@@ -23,7 +22,7 @@ public class Player : BaseObject, IUpdatable
 	
 	public IInput Input { get; set; }
 	
-	public Account Account { get; set; }
+	public Account.Types.Account Account { get; set; }
 	public string Name { get; set; } = "Player";
 	
 	public Text ScoreText { get; set; }
