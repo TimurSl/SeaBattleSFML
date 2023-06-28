@@ -7,6 +7,7 @@ using SeaBattleSFML.Types;
 using SFML.Graphics;
 using SFML.System;
 using ZenisoftGameEngine.Interfaces;
+using ZenisoftGameEngine.Sound;
 using ZenisoftGameEngine.Types;
 using Text = SeaBattleSFML.Objects.Text;
 using Timer = System.Timers.Timer;
@@ -28,8 +29,8 @@ public class Player : BaseObject, IUpdatable
 	public Text ScoreText { get; set; }
 	
 	public bool CanAttack { get; set; } = false;
-	
-	public bool IsStreak = false;
+
+	private bool IsStreak = false;
 	
 	private Timer waitTimer = new Timer(1000);
 	
@@ -108,6 +109,11 @@ public class Player : BaseObject, IUpdatable
 			{
 				AttackMap.OutlineShip(ship);
 				defenseMap.OutlineShip(ship);
+				AudioSystem.PlayAudioClip("destroyed");
+			}
+			else
+			{
+				AudioSystem.PlayAudioClip("hit");
 			}
 
 			IsStreak = true;

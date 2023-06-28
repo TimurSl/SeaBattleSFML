@@ -1,6 +1,7 @@
 ﻿using SeaBattleSFML.MapCreators.Types;
 using SeaBattleSFML.Settings;
 using SeaBattleSFML.Types;
+using ZenisoftGameEngine.Sound;
 using static SeaBattleSFML.Settings.Configuration;
 
 namespace SeaBattleSFML.Cells;
@@ -25,6 +26,7 @@ public class Cell
 	public virtual void ProcessDefenseHit()
 	{
 		CellType = CellType.Miss;
+		AudioSystem.PlayAudioClip("miss");
 	}
 	
 	public bool IsAlreadyHit()

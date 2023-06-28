@@ -6,6 +6,7 @@ using SeaBattleSFML.Types;
 using SFML.Graphics;
 using SFML.System;
 using ZenisoftGameEngine.Interfaces;
+using ZenisoftGameEngine.Sound;
 using ZenisoftGameEngine.Types;
 
 namespace SeaBattleSFML.Objects;
@@ -14,14 +15,13 @@ public class GridMap : BaseObject, IDrawable
 {
 	public int ZIndex { get; set; }
 	
-	private RectangleShape[,] Grid { get; set; } = new RectangleShape[Configuration.size, Configuration.size];
+	private RenderCell[,] Grid { get; set; } = new RenderCell[Configuration.size, Configuration.size];
 	public Map map;
 	
 	private float cellSize = 50f;
 	
 	public Vector2f offset = new Vector2f(0, 0);
 	
-
 	public GridMap(LevelCreationType type, bool showCursor, bool useLastHit)
 	{
 		map = new Map(type, showCursor, useLastHit);
@@ -30,9 +30,8 @@ public class GridMap : BaseObject, IDrawable
 		{
 			for (int y = 0; y < Configuration.size; y++)
 			{
-				Grid[x, y] = new RectangleShape(new Vector2f(cellSize, cellSize));
-				Grid[x, y].FillColor = Color.Blue;
-				Grid[x, y].Position = new Vector2f(x * cellSize + offset.X, y * cellSize + offset.Y);
+				Grid[x,y] = new RenderCell(new Vector2f(x * cellSize + offset.X, y * cellSize + offset.Y));
+				Grid[x,y].Animation.Start();
 			}
 		}
 	}
@@ -44,7 +43,7 @@ public class GridMap : BaseObject, IDrawable
 		{
 			for (int y = 0; y < Configuration.size; y++)
 			{
-				target.Draw(Grid[x, y]);
+				target.Draw(Grid[x, y].Shape);
 			}
 		}
 	}
@@ -56,23 +55,25 @@ public class GridMap : BaseObject, IDrawable
 		{
 			for (int y = 0; y < grid.GetLength(1); y++)
 			{
-				Grid[x, y].FillColor = UIConfiguration.CellColors[grid[x, y].CellType];
+				Grid[x, y].Shape.FillColor = UIConfiguration.CellColors[grid[x, y].CellType];
 				
-				Grid[x, y].Position = new Vector2f(x * cellSize + offset.X, y * cellSize + offset.Y);
-				Grid[x, y].Size = new Vector2f(cellSize, cellSize);
+				Grid[x, y].Shape.Position = new Vector2f(x * cellSize + offset.X, y * cellSize + offset.Y);
+				Grid[x, y].Shape.Size = new Vector2f(cellSize, cellSize);
 				
-				Grid[x, y].OutlineColor = Color.Black;
-				Grid[x, y].OutlineThickness = 1;
+				Grid[x, y].Shape.OutlineColor = Color.Black;
+				Grid[x, y].Shape.OutlineThickness = 1;
 
 				if (new IntegerVector2(x,y) == map.cursorPosition && map.showCursor)
 				{
-					Grid[x, y].FillColor += UIConfiguration.CursorColor;
+					Grid[x, y].Shape.FillColor += UIConfiguration.CursorColor;
 				}
 				
 				if (new IntegerVector2(x, y) == map.lastHit && map.useLastHit)
 				{
-					Grid[x, y].FillColor = UIConfiguration.LastHitColor;
+					Grid[x, y].Shape.FillColor = UIConfiguration.LastHitColor;
 				}
+				Grid[x, y].UpdateCellState(grid[x, y].CellType);
+
 			}
 		}
 	}

@@ -3,6 +3,7 @@ using SeaBattleSFML.Input;
 using SeaBattleSFML.Objects;
 using SeaBattleSFML.Settings;
 using SFML.System;
+using ZenisoftGameEngine.Sound;
 using ZenisoftGameEngine.Types;
 using Timer = System.Timers.Timer;
 
@@ -10,7 +11,7 @@ namespace SeaBattleSFML.Core;
 
 public class Game : BaseGame
 {
-	public static Game Instance { get; private set; }
+	public static Game Instance { get; set; }
 	public static Random Random { get; } = new Random();
 	
 	public RoundManager roundManager = new();
@@ -24,14 +25,18 @@ public class Game : BaseGame
 	public Text LogText { get; set; }
 	
 	private Timer timer = new Timer(1000);
+	
+	private AudioSystem audioSystem = new AudioSystem();
 
 	
 	public Game(GameLaunchParams @params)
 	{
 		Instance = this;
-		
 		Players = new List<Player>(@params.Players);
 
+		string[] files = Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory (), "SoundClips"), "*.ogg");
+		audioSystem.AudioClipsList = files.ToList ();
+		audioSystem.LoadAudioClips ();
 	}
 
 	public override void Initialize()

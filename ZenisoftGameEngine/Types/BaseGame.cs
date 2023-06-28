@@ -52,6 +52,11 @@ public abstract class BaseGame
 	
 	public void RegisterUpdatable(IUpdatable updatable)
 	{
+		if (updatable == null)
+		{
+			Console.WriteLine("Updatable is null");
+			return;
+		}
 		Engine.updatables.Add(updatable);
 	}
 	

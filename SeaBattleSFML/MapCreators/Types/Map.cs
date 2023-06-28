@@ -52,11 +52,6 @@ public class Map
 
 		return false;
 	}
-	
-	public void SetCursorPosition(IntegerVector2 position)
-	{
-		cursorPosition = position;
-	}
 
 	public void ResetMap()
 	{

@@ -1,5 +1,6 @@
 using SeaBattleSFML.Settings;
 using SeaBattleSFML.Types;
+using ZenisoftGameEngine.Sound;
 
 namespace SeaBattleSFML.Cells;
 

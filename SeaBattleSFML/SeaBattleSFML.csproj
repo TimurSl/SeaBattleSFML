@@ -30,6 +30,42 @@
       <None Remove="Animations\Wave\WaveTexture_02.png" />
       <None Remove="Animations\Wave\WaveTexture_03.png" />
       <None Remove="Animations\Wave\WaveTexture_04.png" />
+      <None Remove="SoundClips\hit.ogg" />
+      <EmbeddedResource Include="SoundClips\hit.ogg">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+      <None Remove="SoundClips\miss.ogg" />
+      <EmbeddedResource Include="SoundClips\miss.ogg">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+      <None Remove="SoundClips\destroyed.ogg" />
+      <EmbeddedResource Include="SoundClips\destroyed.ogg">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+      <None Remove="AnimationFrames\Wave\WaveTexture_01.png" />
+      <EmbeddedResource Include="AnimationFrames\Wave\WaveTexture_01.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+      <None Remove="AnimationFrames\Wave\WaveTexture_02.png" />
+      <EmbeddedResource Include="AnimationFrames\Wave\WaveTexture_02.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+      <None Remove="AnimationFrames\Wave\WaveTexture_03.png" />
+      <EmbeddedResource Include="AnimationFrames\Wave\WaveTexture_03.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+      <None Remove="AnimationFrames\Wave\WaveTexture_04.png" />
+      <EmbeddedResource Include="AnimationFrames\Wave\WaveTexture_04.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+      <None Remove="AnimationFrames\ShipTexture.png" />
+      <EmbeddedResource Include="AnimationFrames\ShipTexture.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+      <None Remove="AnimationFrames\fire.png" />
+      <EmbeddedResource Include="AnimationFrames\fire.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
     </ItemGroup>
 
 </Project>
