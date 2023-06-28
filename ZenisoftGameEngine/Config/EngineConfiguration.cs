@@ -25,7 +25,7 @@ public class EngineConfiguration
 	/// <summary>
 	/// The title of the window
 	/// </summary>
-	public const string WindowTitle = "Agar.io Clone";
+	public const string WindowTitle = "SeaBattle SFML";
 	
 	/// <summary>
 	/// The background color of the window

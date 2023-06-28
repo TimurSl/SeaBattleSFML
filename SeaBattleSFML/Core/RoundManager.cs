@@ -40,7 +40,9 @@ public class RoundManager
 		{
 			if (score.Value == Configuration.roundsToWin)
 			{
-				return score.Key;
+				Player winner = score.Key;
+				winner.Account.AddWin();
+				return winner;
 			}
 		}
 		return null;

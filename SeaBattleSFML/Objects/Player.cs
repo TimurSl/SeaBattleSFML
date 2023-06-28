@@ -66,8 +66,9 @@ public class Player : BaseObject, IUpdatable
 
 	public void Update()
 	{
-		AttackMap.IsInitialized = Game.Instance.CurrentAttacker == this && Input is not BotInput;
-		DefenseMap.IsInitialized = Game.Instance.CurrentAttacker == this && Input is not BotInput;
+		bool canShow = (Game.Instance.CurrentAttacker == this && Input is not BotInput) || Game.Instance.IsBvB ();
+		AttackMap.IsInitialized = canShow;
+		DefenseMap.IsInitialized = canShow;
 		if (Game.Instance.CurrentAttacker == this && CanAttack)
 		{
 			Input.UpdateInput();
@@ -76,14 +77,9 @@ public class Player : BaseObject, IUpdatable
 	
 	public void Attack(Player target, IntegerVector2 coordinates)
 	{
-		if (!Game.Instance.CanGameRun())
+		if (!Game.Instance.CanGameRun() || !coordinates.InBounds ())
 			return;
-		
-		if (!coordinates.InBounds ())
-		{
-			Console.WriteLine("Invalid coordinates");
-			return;
-		}
+
 		Cell targetCell = target.DefenseMap.map.Grid[coordinates.X, coordinates.Y];
 
 		if (targetCell.IsAlreadyHit ())
@@ -100,10 +96,7 @@ public class Player : BaseObject, IUpdatable
 		
 		if (!CanAttack)
 		{
-			if (Input is not BotInput)
-				waitTimer.Start ();
-			else
-				Game.Instance.NextTurn ();
+			waitTimer.Start ();
 		}
 	}
 

@@ -73,17 +73,13 @@ public class Game : BaseGame
 	{
 		if (!CanGameRun ())
 		{
-			LogText.SetMessage("Game is over!");
 			return;
 		}
 
-		Player newAttacker = PlayerQueue.Dequeue();
-		PlayerQueue.Enqueue(newAttacker);
+		CurrentAttacker = PlayerQueue.Dequeue();
+		CurrentDefender = PlayerQueue.Peek();
 		
-		Player newDefender = PlayerQueue.Peek();
-
-		CurrentAttacker = newAttacker;
-		CurrentDefender = newDefender;
+		PlayerQueue.Enqueue(CurrentAttacker);
 
 		if (IsBvB ())
 		{
@@ -102,13 +98,17 @@ public class Game : BaseGame
 
 	private void UpdateScoreTexts()
 	{
-		CurrentAttacker.ScoreText.SetMessage(
-			$"{CurrentAttacker.Name}      Score: {roundManager.scores[CurrentAttacker]} / {Configuration.roundsToWin}");
-		CurrentDefender.ScoreText.SetMessage(
-			$"{CurrentDefender.Name}      Score: {roundManager.scores[CurrentDefender]} / {Configuration.roundsToWin}");
+		CurrentAttacker.ScoreText.SetMessage(GetPlayerString(CurrentAttacker));
+		CurrentDefender.ScoreText.SetMessage(GetPlayerString(CurrentDefender));
 
-		CurrentDefender.ScoreText.SetPosition(new Vector2f(ZenisoftGameEngine.Engine.Window.Size.X - 400, 50));
-		CurrentAttacker.ScoreText.SetPosition(new Vector2f(400, 50));
+		CurrentDefender.ScoreText.SetPosition(new Vector2f(ZenisoftGameEngine.Engine.Window.Size.X - 350, 50));
+		CurrentAttacker.ScoreText.SetPosition(new Vector2f(350, 50));
+	}
+	
+	private string GetPlayerString(Player player)
+	{
+		string playerType = player.Input.GetType() == typeof(BotInput) ? "Bot" : "Player";
+		return $"{player.Name} ({playerType})      Score: {roundManager.scores[player]} / {Configuration.roundsToWin}\nWins: {player.Account.Stats.Wins}";
 	}
 
 	public bool CanGameRun()
