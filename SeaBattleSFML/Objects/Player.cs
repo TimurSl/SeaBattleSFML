@@ -88,7 +88,7 @@ public class Player : BaseObject, IUpdatable
 		AttackMap.map.Grid[coordinates.X, coordinates.Y].ProcessAttackHit (target.DefenseMap.map, coordinates);
 		targetCell.ProcessDefenseHit ();
 
-		CheckShipsAndOutline (targetCell);
+		CheckShipsAndOutline (targetCell, target.DefenseMap);
 		
 		target.DefenseMap.map.lastHit = coordinates;
 
@@ -100,13 +100,14 @@ public class Player : BaseObject, IUpdatable
 		}
 	}
 
-	private void CheckShipsAndOutline(Cell targetCell)
+	private void CheckShipsAndOutline(Cell targetCell, GridMap defenseMap)
 	{
 		if (targetCell is Ship ship)
 		{
 			if (!ship.IsAlive ())
 			{
 				AttackMap.OutlineShip(ship);
+				defenseMap.OutlineShip(ship);
 			}
 
 			IsStreak = true;
