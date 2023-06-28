@@ -38,8 +38,8 @@ public class Player : BaseObject, IUpdatable
 	{
 		AttackMap = new GridMap(LevelCreationType.Empty, true, false);
 		DefenseMap = new GridMap(LevelCreationType.Random, false, true);
-		DefenseMap.offset = new Vector2f(700, 100);
-		AttackMap.offset = new Vector2f(100, 100);
+		DefenseMap.offset = new Vector2f(100, 100);
+		AttackMap.offset = new Vector2f(700, 100);
 
 		ScoreText = new Text("", 30, Color.White, new Vector2f(200, 50));
 		
