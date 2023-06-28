@@ -101,8 +101,8 @@ public class Game : BaseGame
 		CurrentAttacker.ScoreText.SetMessage(GetPlayerString(CurrentAttacker));
 		CurrentDefender.ScoreText.SetMessage(GetPlayerString(CurrentDefender));
 
-		CurrentDefender.ScoreText.SetPosition(new Vector2f(ZenisoftGameEngine.Engine.Window.Size.X - 350, 50));
-		CurrentAttacker.ScoreText.SetPosition(new Vector2f(350, 50));
+		CurrentDefender.ScoreText.SetPosition(new Vector2f(ZenisoftGameEngine.Engine.Window.Size.X - 370, 50));
+		CurrentAttacker.ScoreText.SetPosition(new Vector2f(300, 50));
 	}
 	
 	private string GetPlayerString(Player player)
