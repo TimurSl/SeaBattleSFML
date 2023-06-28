@@ -28,6 +28,11 @@ public class Player : BaseObject, IUpdatable
 	public Text ScoreText { get; set; }
 	
 	public bool CanAttack { get; set; } = false;
+
+	/// <summary>
+	/// Doesnt work yet, will be in future
+	/// </summary>
+	public bool IsStreak = false;
 	
 	public Player(string name = "Player", IInput input = null)
 	{
@@ -68,37 +73,40 @@ public class Player : BaseObject, IUpdatable
 		if (!Game.Instance.CanGameRun())
 			return;
 		
-		if (coordinates.X < 0 || coordinates.X >= Configuration.size || coordinates.Y < 0 || coordinates.Y >= Configuration.size)
+		if (!coordinates.InBounds ())
 		{
 			Console.WriteLine("Invalid coordinates");
 			return;
 		}
 		Cell targetCell = target.DefenseMap.map.Grid[coordinates.X, coordinates.Y];
-		
+
 		if (targetCell.IsAlreadyHit ())
 			return;
-		
+
 		AttackMap.map.Grid[coordinates.X, coordinates.Y].ProcessAttackHit (target.DefenseMap.map, coordinates);
-		
 		targetCell.ProcessDefenseHit ();
 
-		// Console.WriteLine($"Attacking {target.Name} at {coordinates.X}, {coordinates.Y}, new status: {targetCell.CellType}");
+		CheckShipsAndOutline (targetCell);
+		
+		target.DefenseMap.map.lastHit = coordinates;
+		
+		Game.Instance.NextTurn();
+	}
 
+	private void CheckShipsAndOutline(Cell targetCell)
+	{
 		if (targetCell is Ship ship)
 		{
 			if (!ship.IsAlive ())
 			{
 				AttackMap.OutlineShip(ship);
 			}
-			// IsStreak = true;
+
+			IsStreak = true;
 		}
-		// else
-		// {
-		// 	IsStreak = false;
-		// }
-		
-		target.DefenseMap.map.lastHit = coordinates;
-		
-		Game.Instance.NextTurn();
+		else
+		{
+			IsStreak = false;
+		}
 	}
 }

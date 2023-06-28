@@ -100,6 +100,8 @@ public class GridMap : BaseObject, IDrawable
 		{
 			OutlineCell(cell);
 		}
+		
+		UpdateGrid ();
 	}
 	
 	private void OutlineCell(Cell cell)
@@ -112,7 +114,8 @@ public class GridMap : BaseObject, IDrawable
 				{
 					if (map.Grid[x, y].CellType == Configuration.CellType.Nothing)
 					{
-						map.Grid[x, y].CellType = Configuration.CellType.Miss;
+						Cell cell1 = map.Grid[x, y];
+						cell1.CellType = Configuration.CellType.Miss;
 					}
 				}
 			}

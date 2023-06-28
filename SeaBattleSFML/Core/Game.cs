@@ -56,9 +56,7 @@ public class Game : BaseGame
 		
 		PlayerQueue = new Queue<Player>(registeredPlayers);
 		
-		float CenterX = ZenisoftGameEngine.Engine.Window.Size.X / 2;
-		float BottomY = ZenisoftGameEngine.Engine.Window.Size.Y - 100;
-		LogText = new Text("", 40, SFML.Graphics.Color.White, new Vector2f(CenterX, BottomY));
+		LogText = new Text("", 40, SFML.Graphics.Color.White, new Vector2f(ZenisoftGameEngine.Engine.Window.Size.X / 2, ZenisoftGameEngine.Engine.Window.Size.Y - 100));
 		
 		RegisterDrawable(LogText);
 
@@ -81,7 +79,7 @@ public class Game : BaseGame
 			LogText.SetMessage("Game is over!");
 			return;
 		}
-		
+
 		Player newAttacker = PlayerQueue.Dequeue();
 		PlayerQueue.Enqueue(newAttacker);
 		
