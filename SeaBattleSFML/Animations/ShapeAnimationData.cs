@@ -1,7 +1,7 @@
 using SFML.Graphics;
 using SFML.System;
 
-namespace agar.io.Game.Animations;
+namespace SeaBattleSFML.Animations;
 
 public class ShapeAnimationData
 {

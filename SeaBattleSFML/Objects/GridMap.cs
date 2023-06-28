@@ -80,12 +80,17 @@ public class GridMap : BaseObject, IDrawable
 	
 	public void MoveCursor(IntegerVector2 direction)
 	{
-		if (map.cursorPosition.X + direction.X < 0 || map.cursorPosition.X + direction.X >= Configuration.size || 
-		    map.cursorPosition.Y + direction.Y < 0 || map.cursorPosition.Y + direction.Y >= Configuration.size)
+		if (!(map.cursorPosition + direction).InBounds ())
 		{
 			return;
 		}
 		map.cursorPosition += direction;
+	}
+	
+	public void SetCursor(IntegerVector2 position)
+	{
+		if (position.InBounds ())
+			map.cursorPosition = position;
 	}
 	
 	public bool HasShips()

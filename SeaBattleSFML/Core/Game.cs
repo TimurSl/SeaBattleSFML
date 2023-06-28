@@ -24,7 +24,7 @@ public class Game : BaseGame
 	public Player CurrentDefender;
 	public Text LogText { get; set; }
 	
-	private Timer timer = new Timer(1000);
+	private Timer timer = new Timer(300);
 	
 	private AudioSystem audioSystem = new AudioSystem();
 
@@ -98,7 +98,8 @@ public class Game : BaseGame
 		
 		LogText.SetMessage(CurrentAttacker.Name + " is attacking " + CurrentDefender.Name);
 		UpdateScoreTexts ();
-
+		
+		AudioSystem.PlayAudioClip("nextturn");
 	}
 
 	private void UpdateScoreTexts()
@@ -110,9 +111,9 @@ public class Game : BaseGame
 		CurrentAttacker.ScoreText.SetPosition(new Vector2f(300, 50));
 	}
 	
-	private string GetPlayerString(Player player)
+	public string GetPlayerString(Player player)
 	{
-		string playerType = player.Input.GetType() == typeof(BotInput) ? "Bot" : "Player";
+		string playerType = player.Input.GetType() == typeof(PlayerInput) ? "Player" : "Bot";
 		return $"{player.Name} ({playerType})      Score: {roundManager.scores[player]} / {Configuration.roundsToWin}\nWins: {player.Account.Stats.Wins}";
 	}
 
@@ -173,7 +174,7 @@ public class Game : BaseGame
 
 	public bool IsBvB()
 	{
-		return CurrentAttacker.Input is BotInput && CurrentDefender.Input is BotInput;
+		return CurrentAttacker.Input is not PlayerInput && CurrentDefender.Input is not PlayerInput;
 	}
 	
 }

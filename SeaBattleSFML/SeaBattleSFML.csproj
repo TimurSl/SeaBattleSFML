@@ -66,6 +66,10 @@
       <EmbeddedResource Include="AnimationFrames\fire.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </EmbeddedResource>
+      <None Remove="SoundClips\nextturn.ogg" />
+      <EmbeddedResource Include="SoundClips\nextturn.ogg">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
     </ItemGroup>
 
 </Project>

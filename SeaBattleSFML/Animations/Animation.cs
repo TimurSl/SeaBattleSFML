@@ -3,7 +3,7 @@ using ZenisoftGameEngine;
 using ZenisoftGameEngine.Interfaces;
 using ZenisoftGameEngine.Types;
 
-namespace agar.io.Game.Animations;
+namespace SeaBattleSFML.Animations;
 
 public class Animation : IUpdatable
 {

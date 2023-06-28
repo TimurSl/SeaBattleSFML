@@ -1,6 +1,6 @@
 ﻿using SFML.Graphics;
 
-namespace agar.io.Game.Animations;
+namespace SeaBattleSFML.Animations;
 
 public struct AnimationKeyFrame
 {

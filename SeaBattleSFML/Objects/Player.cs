@@ -46,7 +46,7 @@ public class Player : BaseObject, IUpdatable
 		Name = name;
 		if (input == null)
 		{
-			Input = new BotInput();
+			Input = new EasyBotInput();
 		}
 		else
 		{
@@ -55,7 +55,7 @@ public class Player : BaseObject, IUpdatable
 		
 		Input.ControlledPlayer = this;
 
-		Account = new XMLProvider ().GetAccount(Name, "123");
+		Account = SeaBattleSFML.Account.Types.Account.GetAccount(new XMLProvider (), Name, "1234");
 		
 		waitTimer.AutoReset = false;
 		
@@ -67,7 +67,7 @@ public class Player : BaseObject, IUpdatable
 
 	public void Update()
 	{
-		bool canShow = (Game.Instance.CurrentAttacker == this && Input is not BotInput) || Game.Instance.IsBvB ();
+		bool canShow = Game.Instance.CurrentAttacker == this && (Game.Instance.IsBvB () || Input is PlayerInput);
 		AttackMap.IsInitialized = canShow;
 		DefenseMap.IsInitialized = canShow;
 		if (Game.Instance.CurrentAttacker == this && CanAttack)
@@ -93,7 +93,7 @@ public class Player : BaseObject, IUpdatable
 		
 		target.DefenseMap.map.lastHit = coordinates;
 
-		CanAttack = IsStreak && Input is not BotInput;
+		CanAttack = IsStreak && Input is PlayerInput;
 		
 		if (!CanAttack)
 		{

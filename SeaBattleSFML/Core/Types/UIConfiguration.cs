@@ -14,7 +14,7 @@ public static class UIConfiguration
 	{
 		{Configuration.CellType.Nothing, new Color(47, 48, 97)},
 		{Configuration.CellType.Ship, new Color(230, 225, 197)},
-		{Configuration.CellType.Hit, new Color(194, 1, 20)},
+		{Configuration.CellType.Hit, new Color(230, 225, 197)},
 		{Configuration.CellType.Miss, new Color(17, 17, 34)},
 	};
 }

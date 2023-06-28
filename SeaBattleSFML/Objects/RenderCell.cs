@@ -1,4 +1,4 @@
-﻿using agar.io.Game.Animations;
+﻿using SeaBattleSFML.Animations;
 using SeaBattleSFML.Core;
 using SeaBattleSFML.Core.Types;
 using SeaBattleSFML.Settings;
@@ -45,13 +45,14 @@ public class RenderCell
 			case Configuration.CellType.Nothing:
 				break;
 			case Configuration.CellType.Ship:
-				Shape.FillColor = Color.White;
 				Shape.Texture = ShipTexture;
+				Shape.FillColor = Color.White;
 				break;
 			case Configuration.CellType.Miss:
 				break;
 			case Configuration.CellType.Hit:
 				Shape.Texture = FireTexture;
+				Shape.FillColor = UIConfiguration.CellColors[Configuration.CellType.Hit];
 				break;
 			default:
 				break;

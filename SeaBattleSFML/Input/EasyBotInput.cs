@@ -6,7 +6,7 @@ using Timer = System.Timers.Timer;
 
 namespace SeaBattleSFML.Input;
 
-public class BotInput : IInput
+public class EasyBotInput : IInput
 {
 	public Player ControlledPlayer { get; set; }
 	
@@ -15,12 +15,11 @@ public class BotInput : IInput
 
 	public void UpdateInput()
 	{
-		IntegerVector2 point = new IntegerVector2(Game.Random.Next(0, Configuration.size), Game.Random.Next(0, Configuration.size));	
-		ControlledPlayer.AttackMap.map.showCursor = false;
+		IntegerVector2 point = new IntegerVector2(Game.Random.Next(0, Configuration.size), Game.Random.Next(0, Configuration.size));
 
 		lastPoint = point;
 		
-		ControlledPlayer.AttackMap.MoveCursor(lastPoint);
+		ControlledPlayer.AttackMap.SetCursor(lastPoint);
 		
 		ControlledPlayer.Attack(Game.Instance.CurrentDefender, lastPoint);
 	}

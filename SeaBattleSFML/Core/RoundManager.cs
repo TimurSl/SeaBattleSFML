@@ -42,6 +42,8 @@ public class RoundManager
 			{
 				Player winner = score.Key;
 				winner.Account.AddWin();
+				Game.Instance.LogText.SetMessage($"{winner.Name} has won the game!");
+				winner.ScoreText.SetMessage(Game.Instance.GetPlayerString(winner));
 				return winner;
 			}
 		}
