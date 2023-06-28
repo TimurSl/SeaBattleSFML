@@ -1,7 +1,5 @@
 ﻿using SeaBattle.Cells;
-using SeaBattle.Core;
 using SeaBattle.Core.Types;
-using SeaBattle.MapCreators;
 using SeaBattle.MapCreators.Types;
 using SeaBattle.Settings;
 using SeaBattle.Types;
@@ -22,6 +20,7 @@ public class GridMap : BaseObject, IDrawable
 	private float cellSize = 50f;
 	
 	public Vector2f offset = new Vector2f(0, 0);
+	
 
 	public GridMap(LevelCreationType type, bool showCursor, bool useLastHit)
 	{
@@ -37,6 +36,7 @@ public class GridMap : BaseObject, IDrawable
 			}
 		}
 	}
+	
 	public void Draw(RenderTarget target)
 	{
 		UpdateGrid ();
@@ -66,7 +66,7 @@ public class GridMap : BaseObject, IDrawable
 
 				if (new IntegerVector2(x,y) == map.cursorPosition && map.showCursor)
 				{
-					Grid[x, y].FillColor = UIConfiguration.CursorColor;
+					Grid[x, y].FillColor += UIConfiguration.CursorColor;
 				}
 				
 				if (new IntegerVector2(x, y) == map.lastHit && map.useLastHit)

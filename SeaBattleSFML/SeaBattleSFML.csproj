@@ -26,6 +26,10 @@
       <EmbeddedResource Include="Fonts\Pusia.otf">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </EmbeddedResource>
+      <None Remove="Animations\Wave\WaveTexture_01.png" />
+      <None Remove="Animations\Wave\WaveTexture_02.png" />
+      <None Remove="Animations\Wave\WaveTexture_03.png" />
+      <None Remove="Animations\Wave\WaveTexture_04.png" />
     </ItemGroup>
 
 </Project>

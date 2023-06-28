@@ -2,6 +2,7 @@
 using SeaBattle.Settings;
 using SeaBattle.Types;
 using SeaBattleSFML.Objects;
+using Timer = System.Timers.Timer;
 
 namespace SeaBattleSFML.Input;
 
@@ -11,6 +12,17 @@ public class BotInput : IInput
 	
 	private IntegerVector2 lastPoint = new IntegerVector2(0, 0);
 	
+	private Timer timer = new Timer(1000);
+
+	public BotInput()
+	{
+		timer.Elapsed += (sender, args) =>
+		{
+			ControlledPlayer.Attack(Game.Instance.CurrentDefender, lastPoint);
+		};
+		timer.AutoReset = false;
+	}
+	
 	public void UpdateInput()
 	{
 		// pick random point
@@ -18,8 +30,10 @@ public class BotInput : IInput
 		
 		lastPoint = point;
 		
-		ControlledPlayer.AttackMap.MoveCursor(point);
-		
-		ControlledPlayer.Attack(Game.Instance.CurrentDefender, point);
+		ControlledPlayer.AttackMap.MoveCursor(lastPoint);
+		if (Game.Instance.IsBvB ())
+			timer.Start();
+		else
+			ControlledPlayer.Attack(Game.Instance.CurrentDefender, lastPoint);
 	}
 }

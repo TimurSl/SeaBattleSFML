@@ -88,7 +88,7 @@ public class Game : BaseGame
 		CurrentAttacker = newAttacker;
 		CurrentDefender = newDefender;
 
-		if (CurrentAttacker.Input is BotInput && CurrentDefender.Input is BotInput)
+		if (IsBvB ())
 		{
 			timer.Start();
 		}
@@ -167,6 +167,11 @@ public class Game : BaseGame
 			player.AttackMap.map.ResetMap();
 			player.DefenseMap.map.ResetMap();
 		}
+	}
+
+	public bool IsBvB()
+	{
+		return CurrentAttacker.Input is BotInput && CurrentDefender.Input is BotInput;
 	}
 	
 }

@@ -10,6 +10,7 @@ using SFML.System;
 using ZenisoftGameEngine.Interfaces;
 using ZenisoftGameEngine.Types;
 using Text = agar.io.Game.Objects.Text;
+using Timer = System.Timers.Timer;
 
 namespace SeaBattleSFML.Objects;
 
@@ -28,11 +29,10 @@ public class Player : BaseObject, IUpdatable
 	public Text ScoreText { get; set; }
 	
 	public bool CanAttack { get; set; } = false;
-
-	/// <summary>
-	/// Doesnt work yet, will be in future
-	/// </summary>
+	
 	public bool IsStreak = false;
+	
+	private Timer waitTimer = new Timer(1000);
 	
 	public Player(string name = "Player", IInput input = null)
 	{
@@ -40,7 +40,7 @@ public class Player : BaseObject, IUpdatable
 		DefenseMap = new GridMap(LevelCreationType.Random, false, true);
 		DefenseMap.offset = new Vector2f(700, 100);
 		AttackMap.offset = new Vector2f(100, 100);
-		
+
 		ScoreText = new Text("", 30, Color.White, new Vector2f(200, 50));
 		
 		Name = name;
@@ -56,12 +56,19 @@ public class Player : BaseObject, IUpdatable
 		Input.ControlledPlayer = this;
 
 		Account = new XMLProvider ().GetAccount(Name, "123");
+		
+		waitTimer.AutoReset = false;
+		
+		waitTimer.Elapsed += (sender, args) =>
+		{
+			Game.Instance.NextTurn();
+		};
 	}
 
 	public void Update()
 	{
-		AttackMap.IsInitialized = Game.Instance.CurrentAttacker == this;
-		DefenseMap.IsInitialized = Game.Instance.CurrentAttacker == this;
+		AttackMap.IsInitialized = Game.Instance.CurrentAttacker == this && Input is not BotInput;
+		DefenseMap.IsInitialized = Game.Instance.CurrentAttacker == this && Input is not BotInput;
 		if (Game.Instance.CurrentAttacker == this && CanAttack)
 		{
 			Input.UpdateInput();
@@ -89,8 +96,16 @@ public class Player : BaseObject, IUpdatable
 		CheckShipsAndOutline (targetCell);
 		
 		target.DefenseMap.map.lastHit = coordinates;
+
+		CanAttack = IsStreak && Input is not BotInput;
 		
-		Game.Instance.NextTurn();
+		if (!CanAttack)
+		{
+			if (Input is not BotInput)
+				waitTimer.Start ();
+			else
+				Game.Instance.NextTurn ();
+		}
 	}
 
 	private void CheckShipsAndOutline(Cell targetCell)
