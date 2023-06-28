@@ -37,6 +37,6 @@ public class HardBotInput : IInput
 		
 		ControlledPlayer.AttackMap.SetCursor(lastPoint);
 		
-		ControlledPlayer.Attack(Game.Instance.CurrentDefender, lastPoint);
+		ControlledPlayer.Attack(Game.Instance.CurrentDefender, ControlledPlayer.AttackMap.map.cursorPosition);
 	}
 }

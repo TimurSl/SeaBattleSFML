@@ -42,8 +42,9 @@ public struct Account
 	
 	public void AddWin()
 	{
-		Stats stats = new Stats(Stats.Wins + 1, Stats.MMR);
+		Stats stats = AccountProvider.GetAccount(Login, Password).Stats;
+		stats = new Stats(stats.Wins + 1, stats.MMR);
 		Stats = stats;
-		AccountProvider.ModifyStats(Login, Password, stats.ToStatsData());
+		AccountProvider.ModifyStats(Login, Password, Stats.ToStatsData());
 	}
 }

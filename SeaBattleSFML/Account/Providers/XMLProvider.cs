@@ -56,7 +56,10 @@ public class XMLProvider : IAccountProvider
 			Stats stats = new Stats ();
 				
 			stats.Wins = int.Parse(newJsonStats.Wins);
+			Console.WriteLine($"New wins: {stats.Wins}");
 			stats.MMR = int.Parse(newJsonStats.Mmr);
+			
+			accountData.Stats = stats;
 			// accountData.Stats = JsonConvert.SerializeObject(stats);
 			
 			fs.SetLength(0);

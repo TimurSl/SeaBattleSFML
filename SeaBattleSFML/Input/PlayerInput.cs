@@ -16,7 +16,8 @@ public class PlayerInput : IInput
 	public PlayerInput()
 	{
 		ActionMap.Add(new PlayerInputKey(Keyboard.Key.Space), Attack);
-		
+		ActionMap.Add(new PlayerInputKey(Keyboard.Key.Enter), Attack);
+
 		KeyMap.Add(new PlayerInputKey(Keyboard.Key.W), Configuration.Direction.Up);
 		KeyMap.Add(new PlayerInputKey(Keyboard.Key.S), Configuration.Direction.Down);
 		KeyMap.Add(new PlayerInputKey(Keyboard.Key.A), Configuration.Direction.Left);
