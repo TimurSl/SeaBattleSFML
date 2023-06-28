@@ -11,10 +11,10 @@ This repository contains the source code and development progress for the recrea
 ## Instructions
 ### To run the Sea Battle game:
 
-0. Make sure you have the necessary dependencies installed, including the SFML library.
-1. Clone this repository to your local machine.
-2. Build the project using your preferred development environment.
-3. Run the compiled executable to start the game.
+- Make sure you have the necessary dependencies installed, including the SFML library.
+- Clone this repository to your local machine.
+- Build the project using your preferred development environment.
+- Run the compiled executable to start the game.
 
 ## Future Enhancements
 ### The following features and improvements can be considered for future development:
