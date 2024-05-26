@@ -1,3 +1,5 @@
+https://badgen.net/badge/maintained/no!/red?icon=github
+
 # Sea Battle
 This repository contains the source code and development progress for the recreation of my old SeaBattle game. The game is being developed using the SFML library and follows an object-oriented design approach.
 
